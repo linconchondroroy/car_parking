@@ -1,19 +1,19 @@
-import 'package:car_parking/Home_screen/HomePageOne.dart';
+import 'package:car_parking/welcome_screen/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp(HomePage());
+  runApp(MyApp());
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: WelcomeScreen(),
     );
   }
 }

@@ -28,11 +28,36 @@ class forgot_password extends StatelessWidget {
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email, color: Colors.white,),
                     hint: Text("Enter your email", style: TextStyle(color: Colors.white,fontSize: 14, fontWeight: FontWeight.w400),),
-                    suffixIcon: Icon(Icons.check_box, color: Colors.grey ,)
+                    suffixIcon: Icon(Icons.check_box, color: Colors.grey ,),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 2,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                    ),
                   ),
-                )
+                ),
+                SizedBox(height: 30,),
               ],
-            ))
+            ),
+            ),
+            InkWell(
+              child: Container(
+                height: 45,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.red,
+                ),
+                child: Center(
+                  child: Text("Get OTP",
+                  style: TextStyle(color: Colors.white),),
+                ),
+              ),
+            ),
           ],
         ) ,
         ),

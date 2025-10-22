@@ -19,8 +19,8 @@ class HomePageThree extends StatelessWidget {
         children: [
           Center(child: Image.asset("assets/home_photo_three.png")),
           SizedBox(height: 10,),
-          Text("Why Choose Us",style: TextStyle(fontSize: 30, color: Colors.white),),
-          Text("We make parking easy, secure, and stress-free. Whether you're driving a car or a truck, find and reserve reliable parking spots in real-time, wherever you are. With our simple booking and payment system, your parking experience is just a tap away!"),
+          Text("Real-Time Parking Updates",style: TextStyle(fontSize: 30, color: Colors.white),),
+          Text("With VIP ME, you can view live parking availability in your area. Get real-time updates on available spots, ensuring you always find a safe and convenient place to park—no more wasted time searching!"),
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,

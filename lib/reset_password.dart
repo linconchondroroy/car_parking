@@ -55,7 +55,7 @@ class reset_password extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 150),
                       Container(
                         height: 45,
                         width: double.infinity,

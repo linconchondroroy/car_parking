@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+
+class sing_up extends StatelessWidget {
+  const sing_up({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.indigo.shade700,
+      ),
+      backgroundColor: Colors.indigo.shade700,
+      body: Center(
+        child: Padding(padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.asset("assets/sing_up.png"),
+            SizedBox(height: 10,),
+            TextFormField(
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hint: Text("User Name",style: TextStyle(color: Colors.white),),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey,width: 2),
+                ),
+              ),
+            ),
+            SizedBox(height: 10,),
+            TextFormField(
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email,color: Colors.white,)
+              ),
+
+            )
+          ],
+        ),
+        ),
+      ),
+    );
+  }
+}

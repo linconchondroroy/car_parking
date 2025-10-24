@@ -1,5 +1,6 @@
 import 'package:car_parking/authentication_screen/forgot_password.dart';
 import 'package:car_parking/authentication_screen/login_screen.dart';
+import 'package:car_parking/authentication_screen/sing_up.dart';
 import 'package:car_parking/onboarding_screen/HomePageThree.dart';
 import 'package:car_parking/onboarding_screen/HomePageTwo.dart';
 import 'package:car_parking/onboarding_screen/HomePageOne.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: reset_password(),
+      home: sing_up(),
     );
   }
 }

@@ -74,7 +74,7 @@ class forgot_otp extends StatelessWidget {
                     color: Colors.red,
                   ),
                   child: Center(
-                    child: Text(
+                    child: Text( 
                       "Verify",
                       style: TextStyle(color: Colors.white),
                     ),

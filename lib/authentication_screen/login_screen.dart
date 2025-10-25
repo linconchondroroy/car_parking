@@ -1,3 +1,4 @@
+import 'package:car_parking/authentication_screen/forgot_password.dart';
 import 'package:flutter/material.dart';
 
 class login_screen extends StatelessWidget {
@@ -64,6 +65,9 @@ class login_screen extends StatelessWidget {
                           color: Colors.red,
                         ),
                         child: InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (c)=>forgot_password()));
+                          },
                           child: Center(
                             child: Text(
                               "Sing In",

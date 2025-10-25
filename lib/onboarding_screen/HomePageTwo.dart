@@ -1,3 +1,4 @@
+import 'package:car_parking/onboarding_screen/HomePageThree.dart';
 import 'package:flutter/material.dart';
 
 class HomePageTwo extends StatelessWidget {
@@ -28,9 +29,14 @@ class HomePageTwo extends StatelessWidget {
               children: [
                 Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: Container(
-                      child: Center(child: Text("Next")),
-                      height: 50, width: 100, color: Colors.red,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (c)=>HomePageThree()));
+                      },
+                      child: Container(
+                        child: Center(child: Text("Next")),
+                        height: 50, width: 100, color: Colors.red,
+                      ),
                     )
                 ),
               ],

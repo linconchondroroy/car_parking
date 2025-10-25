@@ -36,14 +36,59 @@ class sing_up extends StatelessWidget {
             TextFormField(
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.email,color: Colors.white,)
+                prefixIcon: Icon(Icons.email,color: Colors.white,),
+                hint: Text("@example.com",style: TextStyle(color: Colors.white),),
+                suffixIcon: Icon(Icons.check_box,color: Colors.grey,),
+                border: OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 2),
+                ),
               ),
-
-            )
+            ),
+            SizedBox(height: 10,),
+            TextFormField(
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hint: Text("Confirm Password",style: TextStyle(color: Colors.white),),
+                suffixIcon: Icon(Icons.remove_red_eye_outlined,color: Colors.white,),
+                border: OutlineInputBorder(
+                  borderSide:const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 2),
+                ),
+              ),
+            ),
+            SizedBox(height: 10,),
+            Container(
+              height: 45,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.red,
+              ),
+              child: InkWell(
+                onTap: (){},
+                child: Center(
+                  child: Text("Sing Up", style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 10,),
           ],
         ),
         ),
       ),
     );
+
   }
 }

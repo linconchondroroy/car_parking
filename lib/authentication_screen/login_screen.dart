@@ -1,10 +1,21 @@
+import 'package:car_parking/authentication_screen/forget_password_one.dart';
 import 'package:car_parking/authentication_screen/forgot_password.dart';
 import 'package:flutter/material.dart';
 
 class login_screen extends StatelessWidget {
-  const login_screen({super.key});
+   login_screen({super.key});
+  final _formKey = GlobalKey<FormState>();
 
-  @override
+   // === Validation patterns ===
+   static RegExp emailRegexp = RegExp(
+     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+   );
+
+   static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
+
+
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -19,11 +30,23 @@ class login_screen extends StatelessWidget {
             children: [
               SizedBox(height: 10,),
               Form(
+                key: _formKey,
                   child:Column(
                     children: [
                       Image.asset("assets/login_screen.png"),
                       SizedBox(height: 10,),
                       TextFormField(
+                        validator: (value){
+                          // === Validators ===
+
+                            if (value == null || value.isEmpty) {
+                              return "Email is required";
+                            } else if (!emailRegexp.hasMatch(value)) {
+                              return "Enter a valid email address";
+                            }
+                            return null;
+
+                        },
                         decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email,color: Colors.white,),
                           hint: Text("Enter your mail", style: TextStyle(color: Colors.white),),
@@ -41,6 +64,19 @@ class login_screen extends StatelessWidget {
                       ),
                       SizedBox(height: 10),
                       TextFormField(
+
+                        validator: (value){
+
+                            if (value == null || value.isEmpty) {
+                              return "Password is required";
+                            } else if (value.length < 8) {
+                            return "Password must be at least 8 characters";
+                            } else if (!passRegExp.hasMatch(value)) {
+                            return "Password must contain both letters and numbers";
+                            }
+                            return null;
+                          },
+
                         decoration: InputDecoration(
                           prefixIcon:Icon (Icons.email, color: Colors.white,),
                           hint: Text("Password", style: TextStyle(color: Colors.white),),
@@ -66,7 +102,13 @@ class login_screen extends StatelessWidget {
                         ),
                         child: InkWell(
                           onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (c)=>forgot_password()));
+                            if (_formKey.currentState!.validate()) {
+                              // সব কিছু valid হলে এখানে আসবে
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("✅ All fields are valid!")),
+                              );
+                            Navigator.push(context, MaterialPageRoute(builder: (c)=>forgot_password_one()));
+                            }
                           },
                           child: Center(
                             child: Text(

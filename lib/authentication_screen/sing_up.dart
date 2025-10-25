@@ -1,3 +1,5 @@
+import 'package:car_parking/authentication_screen/forgot_password.dart';
+import 'package:car_parking/authentication_screen/verify_screen.dart';
 import 'package:flutter/material.dart';
 
 class sing_up extends StatelessWidget {
@@ -32,7 +34,7 @@ class sing_up extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 5,),
             TextFormField(
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
@@ -50,7 +52,24 @@ class sing_up extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 5,),
+            TextFormField(
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                hint: Text("Confirm Password",style: TextStyle(color: Colors.white),),
+                suffixIcon: Icon(Icons.remove_red_eye_outlined,color: Colors.white,),
+                border: OutlineInputBorder(
+                  borderSide:const BorderSide(
+                    color: Colors.grey,
+                    width: 2,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey, width: 2),
+                ),
+              ),
+            ),
+            SizedBox(height: 5,),
             TextFormField(
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
@@ -76,7 +95,9 @@ class sing_up extends StatelessWidget {
                 color: Colors.red,
               ),
               child: InkWell(
-                onTap: (){},
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=>verify_screen()));
+                },
                 child: Center(
                   child: Text("Sing Up", style: TextStyle(color: Colors.white),
                   ),

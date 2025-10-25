@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+
+class AuthValidationExample extends StatefulWidget {
+  const AuthValidationExample({super.key});
+
+  @override
+  State<AuthValidationExample> createState() => _AuthValidationExampleState();
+}
+
+class _AuthValidationExampleState extends State<AuthValidationExample> {
+
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  // === Validation patterns ===
+  static RegExp emailRegexp = RegExp(
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+  );
+
+
+
+  static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
+
+  // === Validators ===
+  String? emailValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Email is required";
+    } else if (!emailRegexp.hasMatch(value)) {
+      return "Enter a valid email address";
+    }
+    return null;
+  }
+
+  String? passwordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Password is required";
+    } else if (value.length < 😎 {
+      return "Password must be at least 8 characters";
+    } else if (!passRegExp.hasMatch(value)) {
+      return "Password must contain both letters and numbers";
+    }
+    return null;
+  }
+
+  String? confirmPasswordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Please confirm your password";
+    } else if (value != passwordController.text) {
+      return "Passwords do not match";
+    }
+    return null;
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      // সব কিছু valid হলে এখানে আসবে
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("✅ All fields are valid!")),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Form Validation Example")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Email Field
+              TextFormField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value){
+
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Password Field
+              TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value){
+
+                  if (value == null || value.isEmpty) {
+                    return "Password is required";
+                  } else if (value.length < 😎 {
+                    return "Password must be at least 8 characters";
+                  } else if (!passRegExp.hasMatch(value)) {
+                    return "Password must contain both letters and numbers";
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+
+              // Confirm Password Field
+              TextFormField(
+                controller: confirmPasswordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Confirm Password",
+                  border: OutlineInputBorder(),
+                ),
+                validator: confirmPasswordValidator,
+              ),
+              const SizedBox(height: 24),
+
+              // Submit Button
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _submitForm,
+                  child: const Text("Submit"),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

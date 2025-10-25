@@ -1,4 +1,5 @@
 import 'package:car_parking/authentication_screen/complet.dart';
+import 'package:car_parking/authentication_screen/forget_password_one.dart';
 import 'package:car_parking/authentication_screen/forgot_password.dart';
 import 'package:car_parking/authentication_screen/login_screen.dart';
 import 'package:car_parking/authentication_screen/parking_spots.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: login_screen(),
     );
   }
 }

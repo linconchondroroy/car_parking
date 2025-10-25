@@ -1,4 +1,5 @@
 import 'package:car_parking/authentication_screen/forgot_otp.dart';
+import 'package:car_parking/authentication_screen/sing_up.dart';
 import 'package:flutter/material.dart';
 
 class forgot_password extends StatelessWidget {
@@ -19,16 +20,16 @@ class forgot_password extends StatelessWidget {
             SizedBox(height: 10,),
             Form(child: Column(
               children: [
-                Image.asset("assets/forgot_password_screen.png"),
+                Image.asset("assets/reset_password.png"),
                 SizedBox(height: 10,),
-                Text("Forget Password", style: TextStyle(color: Colors.white,fontSize: 24, fontWeight: FontWeight.w600 ),),
+                Text("Resert Password", style: TextStyle(color: Colors.white,fontSize: 24, fontWeight: FontWeight.w600 ),),
                 SizedBox(height: 5,),
-                Text("Enter your email to reset your password", style: TextStyle(color: Colors.white,fontSize:14, fontWeight: FontWeight.w400,),),
+                Text("Password must have 8 charcter", style: TextStyle(color: Colors.white,fontSize:14, fontWeight: FontWeight.w400,),),
                 SizedBox(height: 10,),
                 TextFormField(
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.email, color: Colors.white,),
-                    hint: Text("Enter your email", style: TextStyle(color: Colors.white,fontSize: 14, fontWeight: FontWeight.w400),),
+                    hint: Text("New Password", style: TextStyle(color: Colors.white,fontSize: 14, fontWeight: FontWeight.w400),),
                     suffixIcon: Icon(Icons.check_box, color: Colors.grey ,),
                     border: OutlineInputBorder(
                       borderSide: const BorderSide(
@@ -42,12 +43,28 @@ class forgot_password extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 30,),
+                TextFormField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.email, color: Colors.white,),
+                    hint: Text("Confirm password", style: TextStyle(color: Colors.white,fontSize: 14, fontWeight: FontWeight.w400),),
+                    suffixIcon: Icon(Icons.check_box, color: Colors.grey ,),
+                    border: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 2,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey, width: 2),
+                    ),
+                  ),
+                ),
               ],
             ),
             ),
             InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (c)=>forgot_otp()));
+                Navigator.push(context, MaterialPageRoute(builder: (c)=>sing_up()));
               },
               child: Container(
                 height: 45,

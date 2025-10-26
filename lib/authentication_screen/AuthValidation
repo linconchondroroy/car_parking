@@ -36,7 +36,7 @@ class _AuthValidationExampleState extends State<AuthValidationExample> {
   String? passwordValidator(String? value) {
     if (value == null || value.isEmpty) {
       return "Password is required";
-    } else if (value.length < 😎 {
+    } else if (value.length < 8 {
       return "Password must be at least 8 characters";
     } else if (!passRegExp.hasMatch(value)) {
       return "Password must contain both letters and numbers";
@@ -98,7 +98,7 @@ class _AuthValidationExampleState extends State<AuthValidationExample> {
 
                   if (value == null || value.isEmpty) {
                     return "Password is required";
-                  } else if (value.length < 😎 {
+                  } else if (value.length < 8 {
                     return "Password must be at least 8 characters";
                   } else if (!passRegExp.hasMatch(value)) {
                     return "Password must contain both letters and numbers";

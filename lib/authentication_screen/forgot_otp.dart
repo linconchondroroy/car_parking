@@ -24,7 +24,7 @@ class forgot_otp extends StatelessWidget {
                   children: [
                     Image.asset("assets/forgot_otp.png"),
                     SizedBox(height: 10,),
-                    Text("We Have send code your email",style: TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.w600),),
+                    Text("We've Sent a Code to exa...@email.com",style: TextStyle(color: Colors.white, fontSize: 24,fontWeight: FontWeight.w600),),
                     SizedBox(height: 10,),
                     SizedBox(
                       height: 60,

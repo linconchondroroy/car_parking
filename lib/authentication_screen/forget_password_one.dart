@@ -59,32 +59,6 @@ class forgot_password_one extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 30,),
-                  TextFormField(
-                    validator: (value){
-                      if (value == null || value.isEmpty) {
-                        return "Password is required";
-                      } else if (value.length < 8) {
-                      return "Password must be at least 8 characters";
-                      } else if (!passRegExp.hasMatch(value)) {
-                      return "Password must contain both letters and numbers";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.email, color: Colors.white,),
-                      hint: Text("Enter your password", style: TextStyle(color: Colors.white,fontSize: 14, fontWeight: FontWeight.w400),),
-                      suffixIcon: Icon(Icons.check_box, color: Colors.grey ,),
-                      border: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.grey,
-                          width: 2,
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 2),
-                      ),
-                    ),
-                  ),
                 ],
               ),
               ),
@@ -96,7 +70,7 @@ class forgot_password_one extends StatelessWidget {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text("✅ All fields are valid!")),
                     );
-                    Navigator.push(context, MaterialPageRoute(builder: (ctx)=>forgot_otp()));
+                    Navigator.push(context, MaterialPageRoute(builder: (NextPage)=>forgot_otp()));
                   }
                 },
                 child: Container(

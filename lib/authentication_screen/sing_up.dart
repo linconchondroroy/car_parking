@@ -1,4 +1,5 @@
 import 'package:car_parking/authentication_screen/forgot_password.dart';
+import 'package:car_parking/authentication_screen/verify_otp.dart';
 import 'package:car_parking/authentication_screen/verify_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -96,7 +97,7 @@ class sing_up extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=>verify_screen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=>verify_otp()));
                 },
                 child: Center(
                   child: Text("Sing Up", style: TextStyle(color: Colors.white),

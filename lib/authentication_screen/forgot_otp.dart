@@ -1,5 +1,6 @@
 
 import 'package:car_parking/authentication_screen/forgot_password.dart';
+import 'package:car_parking/authentication_screen/reset_password.dart';
 import 'package:flutter/material.dart';
 
 class forgot_otp extends StatelessWidget {
@@ -65,7 +66,7 @@ class forgot_otp extends StatelessWidget {
               ),
 
               InkWell(
-                onTap: ()=>Navigator.push(context,MaterialPageRoute(builder: (context)=>forgot_password())),
+                onTap: ()=>Navigator.push(context,MaterialPageRoute(builder: (context)=>reset_password())),
                 child: Container(
                   height: 45,
                   width: double.infinity,

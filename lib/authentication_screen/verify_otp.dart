@@ -1,4 +1,5 @@
 
+import 'package:car_parking/authentication_screen/complet.dart';
 import 'package:car_parking/authentication_screen/forgot_password.dart';
 import 'package:flutter/material.dart';
 
@@ -65,7 +66,7 @@ class verify_otp extends StatelessWidget {
               ),
 
               InkWell(
-                onTap: ()=>Navigator.push(context,MaterialPageRoute(builder: (context)=>forgot_password())),
+                onTap: ()=>Navigator.push(context,MaterialPageRoute(builder: (context)=>complet())),
                 child: Container(
                   height: 45,
                   width: double.infinity,

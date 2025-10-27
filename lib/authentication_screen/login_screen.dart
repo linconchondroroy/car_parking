@@ -1,5 +1,7 @@
+import 'package:car_parking/authentication_screen/complet.dart';
 import 'package:car_parking/authentication_screen/forget_password_one.dart';
 import 'package:car_parking/authentication_screen/forgot_password.dart';
+import 'package:car_parking/authentication_screen/sing_up.dart';
 import 'package:flutter/material.dart';
 
 class login_screen extends StatelessWidget {
@@ -109,7 +111,7 @@ class login_screen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (c) => forgot_password_one()),
+                                  builder: (c) => complet()),
                             );
                           }
                         },
@@ -153,10 +155,19 @@ class login_screen extends StatelessWidget {
                     style: TextStyle(color: Colors.white),
                   ),
                   InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => sing_up()), // 🔹 sign_up.dart এ নেবে
+                      );
+                    },
                     child: Text(
                       "Sign Up",
                       style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.none,
+                      ),
                     ),
                   )
                 ],

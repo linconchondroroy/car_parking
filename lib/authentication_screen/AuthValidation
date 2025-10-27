@@ -1,42 +1,24 @@
 import 'package:flutter/material.dart';
 
-class AuthValidationExample extends StatefulWidget {
-  const AuthValidationExample({super.key});
+class reset_password extends StatefulWidget {
+  const reset_password({super.key});
 
   @override
-  State<AuthValidationExample> createState() => _AuthValidationExampleState();
+  State<reset_password> createState() => _reset_passwordState();
 }
 
-class _AuthValidationExampleState extends State<AuthValidationExample> {
+class _reset_passwordState extends State<reset_password> {
+  final _formKey = GlobalKey<FormState>();
+  final _newPasswordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
-
-  // === Validation patterns ===
-  static RegExp emailRegexp = RegExp(
-    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-  );
-
-
-
+  // Password must have letters + numbers
   static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
 
-  // === Validators ===
-  String? emailValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Email is required";
-    } else if (!emailRegexp.hasMatch(value)) {
-      return "Enter a valid email address";
-    }
-    return null;
-  }
-
-  String? passwordValidator(String? value) {
+  String? _passwordValidator(String? value) {
     if (value == null || value.isEmpty) {
       return "Password is required";
-    } else if (value.length < 8 {
+    } else if (value.length < 8) {
       return "Password must be at least 8 characters";
     } else if (!passRegExp.hasMatch(value)) {
       return "Password must contain both letters and numbers";
@@ -44,20 +26,23 @@ class _AuthValidationExampleState extends State<AuthValidationExample> {
     return null;
   }
 
-  String? confirmPasswordValidator(String? value) {
+  String? _confirmPasswordValidator(String? value) {
     if (value == null || value.isEmpty) {
       return "Please confirm your password";
-    } else if (value != passwordController.text) {
+    } else if (value != _newPasswordController.text) {
       return "Passwords do not match";
     }
     return null;
   }
 
-  void _submitForm() {
+  void _updatePassword() {
     if (_formKey.currentState!.validate()) {
-      // সব কিছু valid হলে এখানে আসবে
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("✅ All fields are valid!")),
+        const SnackBar(
+          content: Text("✅ Password Successfully Changed!"),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
+        ),
       );
     }
   }
@@ -65,70 +50,96 @@ class _AuthValidationExampleState extends State<AuthValidationExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Form Validation Example")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Email Field
-              TextFormField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  labelText: "Email",
-                  border: OutlineInputBorder(),
+      appBar: AppBar(
+        backgroundColor: Colors.indigo.shade700,
+      ),
+      backgroundColor: Colors.indigo.shade700,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(height: 10),
+                Column(
+                  children: [
+                    Image.asset("assets/reset_password.png"),
+                    const Text(
+                      "Reset password",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    const Text(
+                      "Password must have 8 characters, letters & numbers",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    const SizedBox(height: 10),
+
+                    // New Password Field
+                    TextFormField(
+                      controller: _newPasswordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "New Password",
+                        hintStyle: const TextStyle(color: Colors.white),
+                        suffixIcon:
+                            const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                      ),
+                      validator: _passwordValidator,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Confirm Password Field
+                    TextFormField(
+                      controller: _confirmPasswordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "Confirm Password",
+                        hintStyle: const TextStyle(color: Colors.white),
+                        suffixIcon:
+                            const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                      ),
+                      validator: _confirmPasswordValidator,
+                    ),
+
+                    const SizedBox(height: 150),
+
+                    // Update Password Button
+                    Container(
+                      height: 45,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.red,
+                      ),
+                      child: InkWell(
+                        onTap: _updatePassword,
+                        child: const Center(
+                          child: Text(
+                            "Update Password",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
                 ),
-                validator: (value){
-
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Password Field
-              TextFormField(
-                controller: passwordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: "Password",
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value){
-
-                  if (value == null || value.isEmpty) {
-                    return "Password is required";
-                  } else if (value.length < 8 {
-                    return "Password must be at least 8 characters";
-                  } else if (!passRegExp.hasMatch(value)) {
-                    return "Password must contain both letters and numbers";
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16),
-
-              // Confirm Password Field
-              TextFormField(
-                controller: confirmPasswordController,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  labelText: "Confirm Password",
-                  border: OutlineInputBorder(),
-                ),
-                validator: confirmPasswordValidator,
-              ),
-              const SizedBox(height: 24),
-
-              // Submit Button
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _submitForm,
-                  child: const Text("Submit"),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

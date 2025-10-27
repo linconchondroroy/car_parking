@@ -1,7 +1,51 @@
 import 'package:flutter/material.dart';
 
-class reset_password extends StatelessWidget {
+class reset_password extends StatefulWidget {
   const reset_password({super.key});
+
+  @override
+  State<reset_password> createState() => _reset_passwordState();
+}
+
+class _reset_passwordState extends State<reset_password> {
+  final _formKey = GlobalKey<FormState>();
+  final _newPasswordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  // Password regex: letters + numbers
+  static RegExp passRegExp = RegExp(r'(?=.*[a-z])(?=.*[0-9])');
+
+  String? _passwordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Password is required";
+    } else if (value.length < 8) {
+      return "Password must be at least 8 characters";
+    } else if (!passRegExp.hasMatch(value)) {
+      return "Password must contain both letters and numbers";
+    }
+    return null;
+  }
+
+  String? _confirmPasswordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Please confirm your password";
+    } else if (value != _newPasswordController.text) {
+      return "Passwords do not match";
+    }
+    return null;
+  }
+
+  void _updatePassword() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("✅ Password Successfully Changed!"),
+          backgroundColor: Colors.green,
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,70 +57,89 @@ class reset_password extends StatelessWidget {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SizedBox(height: 10,),
-              Form(
-                  child:Column(
-                    children: [
-                      Image.asset("assets/reset_password.png"),
-                      Text("Reset password", style: TextStyle(color: Colors.white, fontSize: 18,),),
-                      Text("Password must have 8 characters", style: TextStyle(color: Colors.white,),),
-                      SizedBox(height: 10,),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hint: Text("New Password", style: TextStyle(color: Colors.white),),
-                          suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                          border: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Colors.grey,
-                                width: 2,
-                              )
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey, width: 2),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(height: 10),
+                Column(
+                  children: [
+                    Image.asset("assets/reset_password.png"),
+                    const Text(
+                      "Reset password",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    const Text(
+                      "Password must have 8 characters, letters & numbers",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    const SizedBox(height: 10),
+
+                    // New Password Field
+                    TextFormField(
+                      controller: _newPasswordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "New Password",
+                        hintStyle: const TextStyle(color: Colors.white),
+                        suffixIcon:
+                        const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                      ),
+                      validator: _passwordValidator,
+                    ),
+                    const SizedBox(height: 10),
+
+                    // Confirm Password Field
+                    TextFormField(
+                      controller: _confirmPasswordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        hintText: "Confirm Password",
+                        hintStyle: const TextStyle(color: Colors.white),
+                        suffixIcon:
+                        const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
+                        border: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey, width: 2),
+                        ),
+                      ),
+                      validator: _confirmPasswordValidator,
+                    ),
+
+                    const SizedBox(height: 150),
+
+                    // Update Password Button
+                    Container(
+                      height: 45,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.red,
+                      ),
+                      child: InkWell(
+                        onTap: _updatePassword,
+                        child: const Center(
+                          child: Text(
+                            "Update Password",
+                            style: TextStyle(color: Colors.white),
                           ),
                         ),
                       ),
-                      SizedBox(height: 10),
-                      TextFormField(
-                        decoration: InputDecoration(
-                          hint: Text("Confirm Password", style: TextStyle(color: Colors.white),),
-                          suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.grey,
-                              width: 2,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey, width: 2),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 150),
-                      Container(
-                        height: 45,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.red,
-                        ),
-                        child: InkWell(
-                          child: Center(
-                            child: Text(
-                              "Update Password",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10,),
-                    ],
-                  )
-              ),
-            ],
+                    ),
+                    const SizedBox(height: 10),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

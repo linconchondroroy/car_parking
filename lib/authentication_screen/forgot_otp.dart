@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class forgot_otp extends StatelessWidget {
   const forgot_otp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

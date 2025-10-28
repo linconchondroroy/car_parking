@@ -6,6 +6,7 @@ import 'package:car_parking/authentication_screen/parking_spots.dart';
 import 'package:car_parking/authentication_screen/sing_up.dart';
 import 'package:car_parking/authentication_screen/verify_otp.dart';
 import 'package:car_parking/authentication_screen/verify_screen.dart';
+import 'package:car_parking/home_screen/home_page_one.dart';
 import 'package:car_parking/onboarding_screen/HomePageThree.dart';
 import 'package:car_parking/onboarding_screen/HomePageTwo.dart';
 import 'package:car_parking/onboarding_screen/HomePageOne.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePageOne(),
+      home: home_page_one(),
     );
   }
 }

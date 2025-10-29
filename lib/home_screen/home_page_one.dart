@@ -13,8 +13,11 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo.shade700,
-        leading:Padding(padding: const EdgeInsets.all(8.0),
+        leading:Padding(
+          padding: const EdgeInsets.all(8.0),
         child: CircleAvatar(
+          radius: 22,
+          backgroundColor: Colors.transparent,
           backgroundImage: AssetImage("assets/profile_photo.png"),
          ) ,
         ),
@@ -31,9 +34,25 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                 const SizedBox(width: 4,),
                 const Icon(Icons.location_on,color: Colors.white,size: 15,),
               ],
-            )
+            ),
           ],
         ),
+        actions: [
+          IconButton(
+            onPressed: (){},
+            icon: const Icon(
+              Icons.circle_notifications_sharp,
+              color: Colors.white,
+            ),
+          ),
+          IconButton(
+            onPressed: (){},
+            icon: const Icon(
+                Icons.compare_arrows_outlined,
+              color: Colors.white,
+            ),
+          )
+        ],
       ),
     );
   }

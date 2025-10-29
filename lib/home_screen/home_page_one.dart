@@ -1,48 +1,35 @@
 import 'package:flutter/material.dart';
 
-class home_page_one extends StatefulWidget {
-  const home_page_one({super.key});
+class HomeScreenOne extends StatefulWidget {
+  const HomeScreenOne({super.key});
 
   @override
-  State<home_page_one> createState() => _home_page_oneState();
+  State<HomeScreenOne> createState() => _HomeScreenOneState();
 }
 
-class _home_page_oneState extends State<home_page_one> {
+class _HomeScreenOneState extends State<HomeScreenOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1C2B4A),
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1C2B4A),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        backgroundColor: Colors.indigo.shade700,
+        leading:Padding(padding: const EdgeInsets.all(8.0),
+        child: CircleAvatar(
+          backgroundImage: AssetImage("assets/profile_photo.png"),
+         ) ,
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text("Lincon Roy", style: TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 4,),
             Row(
               children: [
-                const CircleAvatar(),
-                const SizedBox(width: 15,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Sabbir Ahmed",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight:FontWeight.w500,
-                      ),
-                    ),
-                    const SizedBox(height: 2,),
-                    Row(
-                      children: const[
-                        Icon(Icons.location_on, color: Colors.white, size: 16,),
-                        SizedBox(width: 4,),
-                        Text("Bangladesh", style: TextStyle(color: Colors.white,fontSize: 14, fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    )
-                  ],
-                )
+                Text("Bangladesh", style: TextStyle(color: Colors.white,fontSize: 15),
+                ),
+                const SizedBox(width: 4,),
+                const Icon(Icons.location_on,color: Colors.white,size: 15,),
               ],
             )
           ],

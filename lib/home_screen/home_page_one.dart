@@ -8,14 +8,14 @@ class HomeScreenOne extends StatefulWidget {
 }
 
 class _HomeScreenOneState extends State<HomeScreenOne> {
-  int _currentIndex = 0;
+  int _currentIndex = 0; // নিচের নেভিগেশন বারের সিলেকশন ট্র্যাক করার জন্য
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo.shade700,
+      backgroundColor: Colors.indigo.shade700, // স্ক্রিন ব্যাকগ্রাউন্ড রঙ
 
-      // ----------------- APP BAR -----------------
+      // ---------------------- APP BAR ----------------------
       appBar: AppBar(
         backgroundColor: Colors.indigo.shade700,
         elevation: 0,
@@ -56,113 +56,142 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
         ],
       ),
 
-      // ----------------- BODY -----------------
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Explore + Sort
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    child: Text(
-                      "Explore Parking Spots on the Map",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+      // ---------------------- BODY ----------------------
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ---------- Explore + Sort ----------
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        "Explore Parking Spots on the Map",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.sort),
-                    label: const Text("Sort"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.indigo,
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    const SizedBox(width: 12),
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.sort),
+                      label: const Text("Sort"),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.indigo,
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
+                  ],
+                ),
 
-              // Map image
-              Container(
-                height: 200,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/map_one.png"),
-                    fit: BoxFit.cover,
+                const SizedBox(height: 14),
+
+                // ---------- Map Image ----------
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    image: const DecorationImage(
+                      image: AssetImage("assets/map_one.png"),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
 
-              const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-              // Parking Around You + See All
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    "Parking Around You",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  Text(
-                    "See All",
-                    style: TextStyle(fontWeight: FontWeight.w600, color: Colors.white),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
+                // ---------- Parking Around You + See All ----------
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      "Parking Around You",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      "See All",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
 
-              // Cards
-              _ParkingCard(
-                title: "Easy Park Spot",
-                distanceText: "Las Vegas - 4.6 Km",
-                slotsText: "Available Slot: 6/12",
-                priceText: "Price: \$25/Day",
-                rating: "4.4",
-              ),
-              const SizedBox(height: 12),
-              _ParkingCard(
-                title: "Park Pro Space",
-                distanceText: "Las Vegas - 4.6 Km",
-                slotsText: "Available Slot: 6/12",
-                priceText: "Price: \$25/Day",
-                rating: "4.4",
-              ),
-              const SizedBox(height: 12),
-              _ParkingCard(
-                title: "Park Safe Zone",
-                distanceText: "Las Vegas - 4.6 Km",
-                slotsText: "Available Slot: 6/12",
-                priceText: "Price: \$25/Day",
-                rating: "4.4",
-              ),
-              const SizedBox(height: 12),
-              _ParkingCard(
-                title: "Park Point",
-                distanceText: "Las Vegas - 4.6 Km",
-                slotsText: "Available Slot: 6/12",
-                priceText: "Price: \$25/Day",
-                rating: "4.4",
-              ),
-              const SizedBox(height: 24),
-            ],
+                const SizedBox(height: 12),
+
+                // ---------- Parking Card 1 ----------
+                _buildParkingCard(
+                  "Easy Park Spot",
+                  "Las Vegas - 4.6 Km",
+                  "Available Slot: 6/12",
+                  "Price: \$25/Day",
+                  "4.4",
+                ),
+                const SizedBox(height: 12),
+
+                // ---------- Parking Card 2 ----------
+                _buildParkingCard(
+                  "Park Pro Space",
+                  "Las Vegas - 4.6 Km",
+                  "Available Slot: 6/12",
+                  "Price: \$25/Day",
+                  "4.4",
+                ),
+                const SizedBox(height: 12),
+
+                // ---------- Parking Card 3 ----------
+                _buildParkingCard(
+                  "Park Safe Zone",
+                  "Las Vegas - 4.6 Km",
+                  "Available Slot: 6/12",
+                  "Price: \$25/Day",
+                  "4.4",
+                ),
+                const SizedBox(height: 12),
+
+                // ---------- Parking Card 4 ----------
+                _buildParkingCard(
+                  "Park Point",
+                  "Las Vegas - 4.6 Km",
+                  "Available Slot: 6/12",
+                  "Price: \$25/Day",
+                  "4.4",
+                ),
+
+                const SizedBox(height: 24),
+              ],
+            ),
           ),
         ),
       ),
 
-      // ----------------- BOTTOM NAV -----------------
+      // ---------------------- BOTTOM NAV BAR ----------------------
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
           boxShadow: [
             BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, -2)),
           ],
@@ -185,32 +214,25 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
       ),
     );
   }
-}
 
-// ----------------- REUSABLE CARD -----------------
-class _ParkingCard extends StatelessWidget {
-  final String title;
-  final String distanceText;
-  final String slotsText;
-  final String priceText;
-  final String rating;
-
-  const _ParkingCard({
-    required this.title,
-    required this.distanceText,
-    required this.slotsText,
-    required this.priceText,
-    required this.rating,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  // ---------------------- PARKING CARD BUILDER ----------------------
+  Widget _buildParkingCard(
+      String title,
+      String distance,
+      String slots,
+      String price,
+      String rating,
+      ) {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.15), blurRadius: 10, offset: const Offset(0, 4)),
+          BoxShadow(
+            color: Colors.black.withOpacity(0.15),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
         ],
       ),
       padding: const EdgeInsets.all(12),
@@ -219,7 +241,7 @@ class _ParkingCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // thumbnail
+              // থাম্বনেইল
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
@@ -231,19 +253,23 @@ class _ParkingCard extends StatelessWidget {
               ),
               const SizedBox(width: 12),
 
-              // details
+              // ডিটেইলস
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // title + heart
+                    // টাইটেল + হার্ট আইকন
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: Text(
                             title,
-                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: Colors.black87),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black87,
+                            ),
                           ),
                         ),
                         IconButton(
@@ -256,15 +282,13 @@ class _ParkingCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 4),
-
-                    // location + distance
                     Row(
                       children: [
                         const Icon(Icons.location_on, size: 16, color: Colors.grey),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
-                            distanceText,
+                            distance,
                             style: const TextStyle(fontSize: 13, color: Colors.black54),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -272,20 +296,16 @@ class _ParkingCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 6),
-
-                    // slots
                     Row(
                       children: [
                         const Icon(Icons.local_parking, size: 16, color: Colors.grey),
                         const SizedBox(width: 4),
-                        Text(slotsText, style: const TextStyle(fontSize: 13, color: Colors.black54)),
+                        Text(slots, style: const TextStyle(fontSize: 13, color: Colors.black54)),
                       ],
                     ),
                     const SizedBox(height: 10),
-
-                    // price
                     Text(
-                      priceText,
+                      price,
                       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: Colors.black87),
                     ),
                   ],
@@ -294,7 +314,7 @@ class _ParkingCard extends StatelessWidget {
             ],
           ),
 
-          // rating badge
+          // রেটিং ব্যাজ
           Positioned(
             right: 0,
             bottom: 0,

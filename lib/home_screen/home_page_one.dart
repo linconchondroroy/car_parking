@@ -111,7 +111,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 20),
 
                 // ---------- Parking Around You + See All ----------

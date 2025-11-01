@@ -183,7 +183,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
         ),
       ),
 
-      // ---------------------- BOTTOM NAV BAR ----------------------
+      // ---------------------- BOTTOM NAV BAR ---------------------
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -214,7 +214,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
     );
   }
 
-  // ---------------------- PARKING CARD BUILDER ----------------------
+  // ---------------------- PARKING CARD BUILDER ---------------------
   Widget _buildParkingCard(
       String title,
       String distance,

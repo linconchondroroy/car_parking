@@ -118,7 +118,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
                     Text(
-                      "Parking Aroihuhuiiyy9iyiuund You",
+                      "Parking Around You",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,

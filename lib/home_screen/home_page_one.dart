@@ -175,7 +175,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                   "Price: \$25/Day",
                   "4.4",
                 ),
-
                 const SizedBox(height: 24),
               ],
             ),

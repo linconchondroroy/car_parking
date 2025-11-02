@@ -99,7 +99,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
 
                 const SizedBox(height: 14),
 
-                // ---------- Map Image ------------
+                // ----------- Map Image -------------
                 Container(
                   height: 200,
                   width: double.infinity,

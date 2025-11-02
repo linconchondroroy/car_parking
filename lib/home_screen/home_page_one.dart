@@ -64,7 +64,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ---------- Explore + Sort ----------
+                // ---------- Explore + Sort ---------------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -99,7 +99,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
 
                 const SizedBox(height: 14),
 
-                // ---------- Map Image ----------
+                // ---------- Map Image ------------
                 Container(
                   height: 200,
                   width: double.infinity,
@@ -113,7 +113,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                 ),
                 const SizedBox(height: 20),
 
-                // ---------- Parking Around You + See All ----------
+                // ---------- Parking Around You + See All ------------
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
@@ -137,7 +137,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
 
                 const SizedBox(height: 12),
 
-                // ---------- Parking Card 1 ----------
+                // ---------- Parking Card 1 -----------
                 _buildParkingCard(
                   "Easy Park Spot",
                   "Las Vegas - 4.6 Km",
@@ -147,7 +147,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                 ),
                 const SizedBox(height: 12),
 
-                // ---------- Parking Card 2 ----------
+                // ---------- Parking Card 2 -----------
                 _buildParkingCard(
                   "Park Pro Space",
                   "Las Vegas - 4.6 Km",

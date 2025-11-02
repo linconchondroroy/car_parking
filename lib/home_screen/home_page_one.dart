@@ -212,7 +212,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
       ),
     );
   }
-
   // ---------------------- PARKING CARD BUILDER ---------------------
   Widget _buildParkingCard(
       String title,
@@ -250,7 +249,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                 ),
               ),
               const SizedBox(width: 12),
-
               // ডিটেইলস
               Expanded(
                 child: Column(
@@ -311,7 +309,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
               ),
             ],
           ),
-
           // রেটিং ব্যাজ
           Positioned(
             right: 0,

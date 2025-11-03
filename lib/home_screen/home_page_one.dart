@@ -15,7 +15,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
     return Scaffold(
       backgroundColor: Colors.indigo.shade700, // স্ক্রিন ব্যাকগ্রাউন্ড রঙ
 
-      // ---------------------- APP BAR ----------------------
+      // ---------------------- APP BAR -----------------------
       appBar: AppBar(
         backgroundColor: Colors.indigo.shade700,
         elevation: 0,

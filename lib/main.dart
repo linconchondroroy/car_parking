@@ -16,6 +16,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'authentication_screen/forgot_otp.dart';
+import 'home_screen/home_page_five.dart';
 import 'home_screen/home_page_three.dart';
 import 'home_screen/home_screen_four.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreenThree(),
+      home: HomePageFive(),
     );
   }
 }

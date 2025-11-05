@@ -1,3 +1,4 @@
+import 'package:car_parking/home_screen/home_page_two.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreenOne extends StatefulWidget {
@@ -319,15 +320,18 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                 color: const Color(0xFFFF6B6B),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Row(
-                children: [
-                  Text(
-                    rating,
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(width: 4),
-                  const Icon(Icons.star, size: 16, color: Colors.white),
-                ],
+              child: InkWell(
+                onTap: ()=>Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePageTwo())),
+                child: Row(
+                  children: [
+                    Text(
+                      rating,
+                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+                    ),
+                    const SizedBox(width: 8),
+                    const Icon(Icons.star, size: 16, color: Colors.white),
+                  ],
+                ),
               ),
             ),
           ),

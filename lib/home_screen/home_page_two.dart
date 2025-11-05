@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePageTwo extends StatefulWidget {
-  const HomePageTwo({super.key});
+class HomeScreenTwo extends StatefulWidget {
+  const HomeScreenTwo({super.key});
 
   @override
-  State<HomePageTwo> createState() => _ParkingFilterPageState();
+  State<HomeScreenTwo> createState() => _ParkingFilterPageState();
 }
 
-class _ParkingFilterPageState extends State<HomePageTwo> {
+class _ParkingFilterPageState extends State<HomeScreenTwo> {
   String vehicleType = "Car";
   final TextEditingController locationController = TextEditingController();
   final TextEditingController dateController = TextEditingController();

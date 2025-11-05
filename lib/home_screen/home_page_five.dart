@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePageFive extends StatefulWidget {
-  const HomePageFive({super.key});
+class HomeScreenFive extends StatefulWidget {
+  const HomeScreenFive({super.key});
 
   @override
-  State<HomePageFive> createState() => _HomePageFiveState();
+  State<HomeScreenFive> createState() => _HomeScreenFiveState();
 }
 
-class _HomePageFiveState extends State<HomePageFive> {
+class _HomeScreenFiveState extends State<HomeScreenFive> {
   // --- THEME COLORS ---
   Color get kPrimary => const Color(0xFFE8505B);
   Color get kPanel => const Color(0xFF23335F);

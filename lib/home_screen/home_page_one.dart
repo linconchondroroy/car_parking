@@ -1,6 +1,8 @@
 import 'package:car_parking/home_screen/home_page_two.dart';
 import 'package:flutter/material.dart';
 
+enum SortOrder { ascending, descending }
+
 class HomeScreenOne extends StatefulWidget {
   const HomeScreenOne({super.key});
 
@@ -9,12 +11,119 @@ class HomeScreenOne extends StatefulWidget {
 }
 
 class _HomeScreenOneState extends State<HomeScreenOne> {
-  int _currentIndex = 0; // নিচের নেভিগেশন বারের সিলেকশন ট্র্যাক করার জন্য
+  int _currentIndex = 0;
+  SortOrder _selectedOrder = SortOrder.descending; // default
+
+  // ───────────────── Sort Popover (shows at the Sort button position)
+  Future<void> _showSortMenu(Offset globalPos) async {
+    final size = MediaQuery.of(context).size;
+
+    final chosen = await showMenu<SortOrder>(
+      context: context,
+      color: Colors.white,
+      elevation: 10,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
+      position: RelativeRect.fromLTRB(
+        globalPos.dx,               // left from screen
+        globalPos.dy,               // top from screen
+        size.width - globalPos.dx,  // right
+        size.height - globalPos.dy, // bottom
+      ),
+      // Popup body (header + divider + two options with custom radios)
+      items: <PopupMenuEntry<SortOrder>>[
+        PopupMenuItem<SortOrder>(
+          enabled: false,
+          padding: const EdgeInsets.fromLTRB(18, 16, 18, 10),
+          child: const Text(
+            "Sort By Price",
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w800, color: Colors.black),
+          ),
+        ),
+        // red divider
+        PopupMenuItem<SortOrder>(
+          enabled: false,
+          padding: EdgeInsets.zero,
+          child: Container(
+            height: 2,
+            margin: const EdgeInsets.symmetric(horizontal: 18),
+            color: const Color(0xFFE8505B),
+          ),
+        ),
+        // spacing
+        const PopupMenuDivider(height: 10),
+
+        // Ascending row
+        PopupMenuItem<SortOrder>(
+          value: SortOrder.ascending,
+          padding: const EdgeInsets.fromLTRB(18, 10, 18, 10),
+          child: Row(
+            children: [
+              const Expanded(
+                child: Text("Ascending",
+                    style: TextStyle(fontSize: 16, color: Colors.black87)),
+              ),
+              _radioDot(selected: _selectedOrder == SortOrder.ascending),
+            ],
+          ),
+        ),
+
+        // Descending row
+        PopupMenuItem<SortOrder>(
+          value: SortOrder.descending,
+          padding: const EdgeInsets.fromLTRB(18, 10, 18, 18),
+          child: Row(
+            children: [
+              const Expanded(
+                child: Text("Descending",
+                    style: TextStyle(fontSize: 16, color: Colors.black87)),
+              ),
+              _radioDot(selected: _selectedOrder == SortOrder.descending),
+            ],
+          ),
+        ),
+      ],
+    );
+
+    if (chosen != null) {
+      setState(() => _selectedOrder = chosen);
+      // TODO: চাইলে এখানে লিস্ট sort করো:  _sortList(_selectedOrder);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "Sorted: ${chosen == SortOrder.ascending ? "Ascending" : "Descending"}",
+          ),
+        ),
+      );
+    }
+  }
+
+  // custom big radio (screenshot-এর মতো)
+  static Widget _radioDot({required bool selected}) {
+    return Container(
+      width: 28,
+      height: 28,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(color: const Color(0xFFE8505B), width: 2.4),
+      ),
+      alignment: Alignment.center,
+      child: selected
+          ? Container(
+        width: 12,
+        height: 12,
+        decoration: const BoxDecoration(
+          color: Color(0xFFE8505B),
+          shape: BoxShape.circle,
+        ),
+      )
+          : const SizedBox.shrink(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.indigo.shade700, // স্ক্রিন ব্যাকগ্রাউন্ড রঙ
+      backgroundColor: Colors.indigo.shade700,
 
       // ---------------------- APP BAR -----------------------
       appBar: AppBar(
@@ -82,16 +191,21 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                       ),
                     ),
                     const SizedBox(width: 12),
-                    ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: const Icon(Icons.sort),
-                      label: const Text("Sort"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.indigo,
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+
+                    // ⬇️ Sort button (GestureDetector দিয়ে tap position ধরা)
+                    GestureDetector(
+                      onTapDown: (d) => _showSortMenu(d.globalPosition),
+                      child: ElevatedButton.icon(
+                        onPressed: () {}, // GestureDetector কাজ করছে, তাই এখানে ফাঁকা
+                        icon: const Icon(Icons.sort),
+                        label: const Text("Sort"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: Colors.indigo,
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ),
                     ),
@@ -138,7 +252,7 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
 
                 const SizedBox(height: 12),
 
-                // ---------- Parking Card 1 -----------
+                // ---------- Parking Cards (static demo) ----------
                 _buildParkingCard(
                   "Easy Park Spot",
                   "Las Vegas - 4.6 Km",
@@ -147,8 +261,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                   "4.4",
                 ),
                 const SizedBox(height: 12),
-
-                // ---------- Parking Card 2 -----------
                 _buildParkingCard(
                   "Park Pro Space",
                   "Las Vegas - 4.6 Km",
@@ -157,8 +269,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                   "4.4",
                 ),
                 const SizedBox(height: 12),
-
-                // ---------- Parking Card 3 ----------
                 _buildParkingCard(
                   "Park Safe Zone",
                   "Las Vegas - 4.6 Km",
@@ -167,8 +277,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                   "4.4",
                 ),
                 const SizedBox(height: 12),
-
-                // ---------- Parking Card 4 ----------
                 _buildParkingCard(
                   "Park Point",
                   "Las Vegas - 4.6 Km",
@@ -213,7 +321,8 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
       ),
     );
   }
-  // ---------------------- PARKING CARD BUILDER ---------------------
+
+  // ---------------------- PARKING CARD BUIL্ডার ---------------------
   Widget _buildParkingCard(
       String title,
       String distance,
@@ -239,7 +348,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // থাম্বনেইল
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Image.asset(
@@ -250,12 +358,10 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                 ),
               ),
               const SizedBox(width: 12),
-              // ডিটেইলস
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // টাইটেল + হার্ট আইকন
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -310,7 +416,6 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
               ),
             ],
           ),
-          // রেটিং ব্যাজ
           Positioned(
             right: 0,
             bottom: 0,
@@ -321,7 +426,10 @@ class _HomeScreenOneState extends State<HomeScreenOne> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: InkWell(
-                onTap: ()=>Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomePageTwo())),
+                onTap: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreenTwo()),
+                ),
                 child: Row(
                   children: [
                     Text(

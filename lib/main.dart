@@ -14,6 +14,7 @@ import 'package:car_parking/authentication_screen/reset_password.dart';
 import 'package:car_parking/parking_sport/parking_spot_five.dart';
 import 'package:car_parking/parking_sport/parking_spot_four.dart';
 import 'package:car_parking/parking_sport/parking_spot_one.dart';
+import 'package:car_parking/parking_sport/parking_spot_six.dart';
 import 'package:car_parking/parking_sport/parking_spot_two.dart';
 import 'package:car_parking/welcome_screen/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ParkingSpotFive(),
+      home: ParkingSpotSix(),
     );
   }
 }

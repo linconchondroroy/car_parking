@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HomeScreenTen extends StatelessWidget {
-  const HomeScreenTen({super.key});
+class HomeScreenEleven extends StatelessWidget {
+  const HomeScreenEleven({super.key});
 
   Color get kPrimary => const Color(0xFFE8505B); // CTA/Back button
   Color get kBg => const Color(0xFF23335F);      // Background (your color)

@@ -18,6 +18,11 @@ import 'package:car_parking/parking_sport/parking_spot_one.dart';
 import 'package:car_parking/parking_sport/parking_spot_seven.dart';
 import 'package:car_parking/parking_sport/parking_spot_six.dart';
 import 'package:car_parking/parking_sport/parking_spot_two.dart';
+import 'package:car_parking/reservation/reservation_five.dart';
+import 'package:car_parking/reservation/reservation_four.dart';
+import 'package:car_parking/reservation/reservation_one.dart';
+import 'package:car_parking/reservation/reservation_three.dart';
+import 'package:car_parking/reservation/reservation_two.dart';
 import 'package:car_parking/welcome_screen/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +49,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ParkingSpotEight(),
+      home: ReservationScreenFive(),
     );
   }
 }

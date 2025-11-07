@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ParkingSpotFive extends StatelessWidget {
-  const ParkingSpotFive({super.key});
+class ParkingSpotThree extends StatelessWidget {
+  const ParkingSpotThree({super.key});
 
   // থিম কালারগুলো এক জায়গায়
   Color get kPrimary => const Color(0xFFE8505B);

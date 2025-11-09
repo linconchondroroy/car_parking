@@ -45,6 +45,7 @@ import 'home_screen/home_page_six.dart';
 import 'home_screen/home_page_three.dart';
 import 'home_screen/home_page_two.dart';
 import 'home_screen/home_page_four.dart';
+import 'notifications/notifications_one.dart';
 
 
 void main(){
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FavoriteScreenEight(),
+      home: NotificationsScreenOne(),
     );
   }
 }

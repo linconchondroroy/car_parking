@@ -19,6 +19,14 @@ import 'package:car_parking/parking_sport/parking_spot_seven.dart';
 import 'package:car_parking/parking_sport/parking_spot_six.dart';
 import 'package:car_parking/parking_sport/parking_spot_three.dart';
 import 'package:car_parking/parking_sport/parking_spot_two.dart';
+import 'package:car_parking/profile/profile_screen_eight.dart';
+import 'package:car_parking/profile/profile_screen_five.dart';
+import 'package:car_parking/profile/profile_screen_four.dart';
+import 'package:car_parking/profile/profile_screen_one.dart';
+import 'package:car_parking/profile/profile_screen_seven.dart';
+import 'package:car_parking/profile/profile_screen_six.dart';
+import 'package:car_parking/profile/profile_screen_three.dart';
+import 'package:car_parking/profile/profile_screen_two.dart';
 import 'package:car_parking/reservation/reservation_five.dart';
 import 'package:car_parking/reservation/reservation_four.dart';
 import 'package:car_parking/reservation/reservation_one.dart';
@@ -46,6 +54,7 @@ import 'home_screen/home_page_three.dart';
 import 'home_screen/home_page_two.dart';
 import 'home_screen/home_page_four.dart';
 import 'notifications/notifications_one.dart';
+import 'notifications/notifications_two.dart';
 
 
 void main(){
@@ -58,7 +67,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NotificationsScreenOne(),
+      home: ProfileScreenEight(),
     );
   }
 }

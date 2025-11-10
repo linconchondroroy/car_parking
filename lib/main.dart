@@ -56,7 +56,6 @@ import 'home_screen/home_page_four.dart';
 import 'notifications/notifications_one.dart';
 import 'notifications/notifications_two.dart';
 
-
 void main(){
   runApp(MyApp());
 }

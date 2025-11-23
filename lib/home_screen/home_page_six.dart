@@ -13,7 +13,6 @@ class HomeScreenSix extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // 🗺️ Fullscreen Map Image
           Positioned.fill(
             child: Image.asset(
               "assets/full_screen_map_one.png",

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 class HomeScreenSix extends StatelessWidget {
   const HomeScreenSix({super.key});
-
-  // থিম কালারগুলো এক জায়গায়
   Color get kPrimary => const Color(0xFFE8505B);
   Color get kPanelColor => const Color(0xFF1F2D3A);
   Color get kTextLight => const Color(0xFFB9C3CF);
